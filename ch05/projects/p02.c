@@ -15,4 +15,6 @@ int main(void) {
         printf("Equivalent 12-hour time: %d:%d PM", 
             hour == 12 ? 12 : hour - 12, min);
     }
+
+    return 0;
 }
