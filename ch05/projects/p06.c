@@ -18,6 +18,9 @@ int main(void) {
     } else {
         printf("NOT VALID");
     }
+
+    // Solution using ternary operator
+    // n12 == 9 - ((total - 1) % 10) ? printf("Valid") : printf("Invalid");
     
     return 0;
 }
