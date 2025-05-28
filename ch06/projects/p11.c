@@ -14,10 +14,17 @@ where n is an integer entered by the user.
 int main(void) {
 
     int i, n;
-    float result = 1.0f;
+    float total = 1.0f, fact = 1.0f;
 
     printf("Enter an integer: ");
     scanf("%d", &n);
+
+    for (i = 1; i <= n; i++) {
+        fact *= i;
+        total += 1.0f / fact;
+    }
+
+    printf("%f", total);
 
     return 0;
 }

@@ -19,7 +19,7 @@ int main(void) {
     printf("Enter monthly payment: ");
     scanf("%f", &monthly_payment);
 
-    monthly_rate = rate / 12;
+    monthly_rate = rate / 100 / 12;
 
     loan += (loan * monthly_rate);
     loan -= monthly_payment;
