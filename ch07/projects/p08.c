@@ -1,40 +1,24 @@
-/* The following table shows the daily flights from 
-   one city to another:
+/* Modify Programming Project 8 from Chapter 5 so that the user enters a time using the 12-hour clock. The input will have the form hours:minutes followed by either A, P, AM, or PM (either lower-case or upper-case). White space is allowed (but not required) between the numerical time and the AM/PM indicator. Examples of valid input.
 
-   Departure time   Arrival time
-   -----------------------------
-    8:00 am         10:15 am
-    9:43 am         11:52 am
-   11:19 am          1:31 pm
-   12:47 pm          3:00 pm
-    2:00 pm          4:08 pm
-    3:45 pm          5:55 pm
-    7:00 pm          9:20 pm
-    9:45 pm         11:58 pm
+    1:15P
+    1:15PM
+    1:15p
+    1:15pm
+    1:15 P
+    1:15 PM
+    1:15 p 
+    1:15 pm
 
-   Write a program that asks user to enter a time
-   (expressed in hours and minutes, using the 24-hour
-   clock). The program then displays the departure and
-   arrival times for the flight whose departure time is
-   closest to that entered by the user:
-
-       Enter a 24-hour time: 13:15
-       Closest departure time is 12:47 pm, arriving at 3:00 pm
-
-   Hint: Convert the input into a time expressed in minutes
-   since midnight, and compare it to the departure times, also
-   expressed in minutes since midnight. For example, 13:15 is
-   13 x 60 + 15 = 795 minutes since midnight, which is closer to
-   12:47 pm (767 minutes since midnight) than to any of the
-   other departure times.
-
+You may assume the input has one of these forms; there is no need to test for errors.
 */
 
 #include <stdio.h>
+#include <ctype.h>
 
 int main(void) {
 
     int hour, min, user_time, t1, t2, t3, t4, t5, t6, t7, t8;
+    char meridiam;
 
     // Converting departure times to minutes
     t1 = 8 * 60;        // 8 am
@@ -46,11 +30,11 @@ int main(void) {
     t7 = 19 * 60;       // 7:00 pm
     t8 = 21 * 60 + 45;  // 9:45 pm
 
-    printf("Enter time of departure (military time): ");
-    scanf("%d :%d", &hour, &min);
+    printf("Enter time of departure (standard time with AM/PM): ");
+    scanf("%d :%d %c", &hour, &min, &meridiam);
 
-    user_time = hour * 60 + min;
-    
+    user_time = (((toupper(meridiam) == 'P' ? 12 : 0) + hour) * 60) + min;
+
     if (user_time <= t1 + (t2 - t1) / 2) {
         printf("Closest departure time is 8:00 a.m., arriving at 10:16 a.m.\n");
     } else if (user_time < t2 + (t3 - t2) / 2) {
