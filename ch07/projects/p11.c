@@ -11,13 +11,24 @@ The user's input may contain extra spaces before the first name, between the fir
 
 int main(void) {
 
-    printf("Enter a first and last name: ");
-    
-    char ch;
+    char ch, first_initial, last_name;
 
-    while ((ch = getchar()) != '\n') {
-        putchar(ch);
+    printf("Enter a first and last name: ");
+    scanf(" %c", &first_initial);
+
+    while ((ch = getchar()) != ' ') {
+
     }
+
+    while ((last_name = getchar()) != '\n') {
+        if (last_name == ' ') {
+
+        } else {
+            printf("%c", last_name);
+        }
+    }
+
+    printf(", %c.", first_initial);
 
     return 0;
 }
