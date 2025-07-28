@@ -1,4 +1,8 @@
 /*
+Simplify Programming Project 2(b) by taking advantage of the fact that an array name can be used as a pointer
+*/
+
+/*
 Write a program that reads a message, then checks whether it's a palindrome (the letters in the message are the same from left to right as from right to left):
 
     Enter a message: He lived as a devil, eh?
@@ -23,7 +27,7 @@ int main(void) {
     char ch, *p = message, *j;
 
     printf("Enter a message: ");
-    while ((ch = tolower(getchar())) != '\n' && p < &message[MAX]) {
+    while ((ch = tolower(getchar())) != '\n' && p < message + MAX) {
         if (isalpha(ch)) {
             *p++ = ch;
         }
@@ -31,7 +35,7 @@ int main(void) {
 
     p--;
 
-    for (j = &message[0]; j < p; j++, p--) {
+    for (j = message; j < p; j++, p--) {
         if (*j != *p) {
             printf("Not a palindrome");
             return 0;
