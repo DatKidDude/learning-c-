@@ -30,7 +30,7 @@ int main(void) {
             break;
         }
         printf("Enter reminder: mm/dd hh:mm reminder: ");
-        scanf(" %2d/ %2d", &month, &day);
+        scanf(" %2d/ %2d", &month, &day); // '/' must come directly after the 'd' to prevent blocking
         if (month == 0 || day == 0) {
             break;
         } else if (day < 0 || day > 31) {
@@ -59,7 +59,7 @@ int main(void) {
         num_remind++;
     }
 
-    printf("\nDay Reminder\n");
+    printf("\nDate Time Reminder\n");
     for (i = 0; i < num_remind; i++) {
         printf(" %s\n", reminders[i]);
     }
