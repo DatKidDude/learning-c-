@@ -14,6 +14,7 @@ int main(void) {
     char c;
     int score = 0;
 
+    printf("Enter a word: ");
     while((c = getchar()) != '\n') {
         switch (toupper(c)) {
             case 'A': case 'E': case 'I': case 'L': case 'N': case 'O': case 'R': case 'S': case 'T': case 'U': 
