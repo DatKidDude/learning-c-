@@ -19,7 +19,7 @@ int main(void) {
     // Converting arrival times to minutes
     a1 = 10 * 60 + 16;  // 10:16 am
     a2 = 11 * 60 + 52;  // 11:52 am
-    a3 = 1 * 60 + 31;   // 1:31 pm
+    a3 = 13 * 60 + 31;   // 1:31 pm
     a4 = 15 * 60;       // 3:00 pm
     a5 = 16 * 60 + 8;   // 4:08 pm
     a6 = 17 * 60 + 55;  // 5:55 pm
@@ -37,15 +37,16 @@ int main(void) {
     for (int i = 0; i < 7; i++) {
         dt = departure_times[i] + ((departure_times[i + 1] - departure_times[i]) / 2);
         if (user_time <= dt) {
-            d_hour = (departure_times[i] > 12) ? departure_times[i] / 60 - 12 : departure_times[i];
+            d_hour = (departure_times[i] / 60 > 12) ? departure_times[i] / 60 - 12 : departure_times[i] / 60;
             d_min = departure_times[i] % 60;
-            a_hour = (arrival_times[i] > 12) ? arrival_times[i] / 60 - 12 : arrival_times[i];
+            a_hour = (arrival_times[i] / 60 > 12) ? arrival_times[i] / 60 - 12 : arrival_times[i] / 60;
             a_min = arrival_times[i] % 60;
 
             printf("Closest departure time is %d:%.2d %c.m., arriving at %d:%.2d %c.m.",
             d_hour, d_min, departure_times[i] / 60 > 12 ? 'p' : 'a',
             a_hour, a_min, arrival_times[i] / 60 > 12 ? 'p' : 'a'
             );
+            return 0;
         }
     }
 
