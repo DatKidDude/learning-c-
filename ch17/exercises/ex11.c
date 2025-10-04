@@ -12,6 +12,7 @@ struct node *add_to_list(struct node *list, int n);
 struct node *read_numbers(void);
 struct node *search_list(struct node *list, int n);
 struct node *delete_from_list(struct node *list, int n);
+struct node *insert_into_ordered_list(struct node *list, struct node *new_node);
 
 /*
 * *add_to_list: Add a node to the linked list. 
@@ -52,20 +53,20 @@ struct node *add_to_list(struct node *list, int n)
 * *read_numbers: User enters a series of numbers to build
 *                a linked list.
 */
-struct node *read_numbers(void) 
-{
-    struct node *first = NULL;
-    int n;
+// struct node *read_numbers(void) 
+// {
+//     struct node *first = NULL;
+//     int n;
 
-    printf("Enter a series of integers (0 to terminate): ");
-    for (;;) {
-        scanf("%d", &n);
-        if (n == 0) {
-            return first;
-        }
-        first = add_to_list(first, n);
-    }
-}
+//     printf("Enter a series of integers (0 to terminate): ");
+//     for (;;) {
+//         scanf("%d", &n);
+//         if (n == 0) {
+//             return first;
+//         }
+//         first = add_to_list(first, n);
+//     }
+// }
 
 /*
 * *search_list: Searches the linked list for node with value n.
@@ -103,4 +104,50 @@ struct node *delete_from_list(struct node *list, int n)
     }
     free(cur);
     return list;
+}
+
+struct node *insert_into_ordered_list(struct node *list, struct node *new_node)
+    {
+        struct node *cur = list, *prev = NULL;
+        while (cur->value <= new_node->value) {
+            prev = cur;
+            cur = cur->next;
+        }
+        prev->next = new_node;
+        new_node->next = cur;
+        return list;
+    }
+
+struct node *read_numbers(void) 
+{
+    struct node *first = NULL;
+    struct node *temp;
+    int n;
+
+    printf("Enter a series of integers (0 to terminate): ");
+    for (;;) {
+        scanf("%d", &n);
+        if (n == 0) {
+            return first;
+        }
+        temp->value = n;
+        temp->next = NULL;
+        first = insert_into_ordered_list(first, temp);
+    }
+}
+
+int main(void) 
+{
+
+    struct node *llist = read_numbers();
+    struct node temp = {3, NULL};
+
+    llist = insert_into_ordered_list(llist, &temp);
+
+    while (llist) {
+        printf("%d\n", llist->value);
+        llist = llist->next;
+    }
+
+    return 0;
 }
